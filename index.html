@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Workshop de Inteligencia Artificial 2026 – FaCENA, UNNE</title>
+  <meta name="description" content="Workshop sobre Inteligencia Artificial – FaCENA, UNNE, Corrientes, Argentina.">
+  <meta property="og:title" content="Workshop de Inteligencia Artificial 2026 – FaCENA, UNNE">
+  <meta property="og:description" content="Workshop sobre Inteligencia Artificial – FaCENA, UNNE, Corrientes, Argentina.">
+  <meta property="og:type" content="website">
+  <!-- Para la vista previa al compartir el link, descomentar y completar con la URL final de la imagen:
+  <meta property="og:image" content="https://TU-USUARIO.github.io/TU-REPO/img/cabecera.jpg"> -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================================
+       COLORES Y TIPOGRAFÍA – editar acá para ajustar al estilo FaCENA
+       ============================================================ */
+    :root {
+      --color-primario: #1d4e7a;      /* azul institucional (títulos, botón principal) */
+      --color-primario-osc: #143755;  /* hover / franja oscura */
+      --color-acento: #4f9a3a;        /* verde (botón secundario, detalles) */
+      --color-acento-osc: #3b7a2a;
+      --color-texto: #333333;
+      --color-suave: #f3f6f9;         /* fondo de secciones alternas */
+      --color-borde: #dde4ea;
+      --fuente: "Open Sans", "Helvetica Neue", Arial, sans-serif;
+      --ancho: 960px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--fuente);
+      font-size: 17px;
+      line-height: 1.65;
+      color: var(--color-texto);
+      background: #fff;
+    }
+    a { color: var(--color-primario); }
+    a:hover { color: var(--color-acento-osc); }
+
+    /* ---------- Cabecera (imagen de ancho completo) ---------- */
+    .cabecera {
+      width: 100%;
+      min-height: 200px;
+      background: linear-gradient(135deg, var(--color-primario-osc), var(--color-primario));
+    }
+    .cabecera img {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 460px;
+      object-fit: cover;
+    }
+
+    /* ---------- Contenedor ---------- */
+    .contenedor {
+      max-width: var(--ancho);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    section { padding: 44px 0; }
+    section.alt { background: var(--color-suave); }
+
+    /* ---------- Títulos ---------- */
+    h1, h2 {
+      font-weight: 800;
+      color: var(--color-primario);
+      text-transform: uppercase;
+      letter-spacing: .02em;
+      line-height: 1.25;
+    }
+    h1 { font-size: clamp(1.5rem, 3.6vw, 2.2rem); margin: 0 0 12px; text-align: center; }
+    h2 {
+      font-size: 1.35rem;
+      margin: 0 0 18px;
+      padding-bottom: 10px;
+      border-bottom: 3px solid var(--color-acento);
+      display: inline-block;
+    }
+    h3 { color: var(--color-primario); margin: 22px 0 6px; font-size: 1.05rem; }
+
+    /* ---------- Bloque de título ---------- */
+    .portada { text-align: center; padding: 40px 0 28px; }
+    .portada .lugar-fecha {
+      font-size: 1.1rem; font-weight: 600; color: var(--color-texto); margin: 0 0 22px;
+    }
+    .datos {
+      max-width: 640px;
+      margin: 0 auto 28px;
+      text-align: left;
+      list-style: none;
+      padding: 0;
+    }
+    .datos li { padding: 6px 0; border-bottom: 1px solid var(--color-borde); }
+    .datos li:last-child { border-bottom: 0; }
+    .datos strong { color: var(--color-primario); }
+
+    /* ---------- Botones de llamado a la acción ---------- */
+    .botones {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+      margin-top: 8px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 14px 30px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      color: #fff;
+      transition: background .2s, transform .1s;
+    }
+    .btn:hover { color: #fff; transform: translateY(-1px); }
+    .btn-primario { background: var(--color-primario); }
+    .btn-primario:hover { background: var(--color-primario-osc); }
+    .btn-secundario { background: var(--color-acento); }
+    .btn-secundario:hover { background: var(--color-acento-osc); }
+
+    /* ---------- Listas ---------- */
+    ul.lista { padding-left: 20px; }
+    ul.lista li { margin-bottom: 12px; }
+    ul.lista li strong { color: var(--color-primario); }
+
+    .dos-col {
+      columns: 2 280px;
+      column-gap: 40px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .dos-col li { break-inside: avoid; padding: 4px 0; }
+
+    /* ---------- Mapa ---------- */
+    .mapa {
+      margin-top: 18px;
+      border: 1px solid var(--color-borde);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .mapa iframe { display: block; width: 100%; height: 360px; border: 0; }
+
+    /* ---------- Auspiciantes ---------- */
+    .logos {
+      display: flex; flex-wrap: wrap; gap: 28px;
+      align-items: center; justify-content: center; margin-top: 12px;
+    }
+    .logos img { max-height: 80px; max-width: 220px; height: auto; width: auto; }
+
+    /* ---------- Pie ---------- */
+    footer {
+      background: var(--color-primario-osc);
+      color: #dbe6f0;
+      text-align: center;
+      padding: 28px 24px;
+      font-size: .92rem;
+    }
+    footer a { color: #fff; }
+
+    @media (max-width: 600px) {
+      body { font-size: 16px; }
+      section { padding: 32px 0; }
+      .btn { width: 100%; text-align: center; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ======================= CABECERA (imagen de ancho completo) =======================
+       Guardar la imagen como  img/cabecera.jpg  (recomendado: 1920 x 600 px aprox.)
+       ================================================================================ -->
+  <header class="cabecera">
+    <img src="img/cabecera.jpg" alt="Workshop de Inteligencia Artificial 2026 – FaCENA, UNNE"
+         onerror="this.style.display='none'">
+  </header>
+
+  <main>
+
+    <!-- ======================= TÍTULO + CTAs ======================= -->
+    <section class="portada">
+      <div class="contenedor">
+        <h1>Workshop sobre Inteligencia Artificial</h1>
+        <p class="lugar-fecha">[DÍA] al [DÍA] de [MES] de 2026 · Facultad de Ciencias Exactas y Naturales y Agrimensura, UNNE · Corrientes, Argentina</p>
+
+        <ul class="datos">
+          <li><strong>Convocatoria de resúmenes:</strong> [FECHA DE INICIO] – [FECHA DE CIERRE]</li>
+          <li><strong>Prórroga de la fecha límite:</strong> [FECHA] <em>(eliminar si no corresponde)</em></li>
+          <li><strong>Agenda:</strong> <a href="#">Ver aquí</a></li>
+          <li><strong>Actas del workshop:</strong> A confirmar</li>
+        </ul>
+
+        <div class="botones">
+          <a class="btn btn-primario" href="#" target="_blank" rel="noopener">Inscripción al Workshop</a>
+          <a class="btn btn-secundario" href="#" target="_blank" rel="noopener">Envío de resumen / abstract</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= MOTIVACIÓN ======================= -->
+    <section class="alt" id="motivacion">
+      <div class="contenedor">
+        <h2>Motivación</h2>
+        <p>[Párrafo 1: breve descripción del impacto de la inteligencia artificial y el aprendizaje automático en el área de interés del workshop, y de los avances recientes que motivan el encuentro.]</p>
+        <p>[Párrafo 2: objetivo del workshop (discutir los últimos avances, fortalecer la colaboración entre investigadores/as, en particular jóvenes investigadores/as) y marco institucional en el que se organiza (proyecto, instituciones y entidades financiadoras).]</p>
+      </div>
+    </section>
+
+    <!-- ======================= ÁREAS TEMÁTICAS ======================= -->
+    <section id="areas">
+      <div class="contenedor">
+        <h2>Áreas temáticas</h2>
+        <ul class="lista">
+          <li><strong>[Área 1]:</strong> [Descripción breve del área temática.]</li>
+          <li><strong>[Área 2]:</strong> [Descripción breve del área temática.]</li>
+          <li><strong>[Área 3]:</strong> [Descripción breve del área temática.]</li>
+          <li><strong>[Área 4]:</strong> [Descripción breve del área temática.]</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ======================= PARTICIPACIÓN Y ARANCELES ======================= -->
+    <section class="alt" id="participacion">
+      <div class="contenedor">
+        <h2>Participación y aranceles</h2>
+        <p>Los aranceles de participación en el workshop son los siguientes:</p>
+        <ul class="lista">
+          <li>Arancel para residentes en Argentina: <strong>$[MONTO] (ARS)</strong></li>
+          <li>Arancel para residentes fuera de Argentina: <strong>[MONTO] USD</strong></li>
+        </ul>
+        <p>Para asegurar tu lugar, completá el <a href="#" target="_blank" rel="noopener">formulario de inscripción</a>. Dentro del formulario encontrarás todas las instrucciones y los medios de pago disponibles.</p>
+        <p>Para consultas sobre los aranceles o para solicitar una exención justificada, escribí al comité organizador a: <a href="mailto:correo@ejemplo.com">correo@ejemplo.com</a></p>
+      </div>
+    </section>
+
+    <!-- ======================= CURSO INTENSIVO ======================= -->
+    <section id="curso">
+      <div class="contenedor">
+        <h2>Curso intensivo</h2>
+        <p>[Opcional: durante las semanas previas al encuentro ([FECHA] – [FECHA]) se dictará un curso intensivo sobre [TEMA] en [INSTITUCIÓN]. Más información: <a href="#" target="_blank" rel="noopener">enlace al curso</a>.] <em>(Eliminar esta sección si no corresponde.)</em></p>
+      </div>
+    </section>
+
+    <!-- ======================= SEDE ======================= -->
+    <section class="alt" id="sede">
+      <div class="contenedor">
+        <h2>Sede</h2>
+        <p>El workshop se realizará en la Facultad de Ciencias Exactas y Naturales y Agrimensura (FaCENA) de la Universidad Nacional del Nordeste (UNNE), Corrientes, Argentina.</p>
+        <div class="mapa">
+          <iframe
+            title="Ubicación de FaCENA, UNNE"
+            src="https://www.google.com/maps?q=FaCENA+UNNE+Corrientes+Argentina&output=embed"
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= ORADORES INVITADOS ======================= -->
+    <section id="oradores">
+      <div class="contenedor">
+        <h2>Oradores invitados</h2>
+        <ul class="lista">
+          <li>Dr./Dra. [Nombre Apellido] – [Institución] ([País])</li>
+          <li>Dr./Dra. [Nombre Apellido] – [Institución] ([País])</li>
+          <li>Dr./Dra. [Nombre Apellido] – [Institución] ([País])</li>
+          <li>Dr./Dra. [Nombre Apellido] – [Institución] ([País])</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ======================= COMITÉ ORGANIZADOR ======================= -->
+    <section class="alt" id="comite">
+      <div class="contenedor">
+        <h2>Comité organizador</h2>
+
+        <h3>Presidencia:</h3>
+        <ul class="lista">
+          <li>Dr./Dra. [Nombre Apellido]</li>
+          <li>Dr./Dra. [Nombre Apellido]</li>
+        </ul>
+
+        <h3>Comité ejecutivo:</h3>
+        <ul class="dos-col">
+          <li>Dr./Dra. [Nombre Apellido]</li>
+          <li>Dr./Dra. [Nombre Apellido]</li>
+          <li>Dr./Dra. [Nombre Apellido]</li>
+          <li>Ing. [Nombre Apellido]</li>
+          <li>Lic. [Nombre Apellido]</li>
+          <li>[Nombre Apellido]</li>
+        </ul>
+
+        <h3>Contacto:</h3>
+        <p>Correo electrónico: <a href="mailto:correo@ejemplo.com">correo@ejemplo.com</a></p>
+      </div>
+    </section>
+
+    <!-- ======================= AUSPICIANTES ======================= -->
+    <section id="auspicios">
+      <div class="contenedor">
+        <h2>Este evento cuenta con el apoyo de las siguientes instituciones</h2>
+        <div class="logos">
+          <!-- Reemplazar por los logos reales (guardarlos en la carpeta img/) -->
+          <img src="img/logo-1.png" alt="Logo institución 1" onerror="this.style.display='none'">
+          <img src="img/logo-2.png" alt="Logo institución 2" onerror="this.style.display='none'">
+          <img src="img/logo-3.png" alt="Logo institución 3" onerror="this.style.display='none'">
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Facultad de Ciencias Exactas y Naturales y Agrimensura – Universidad Nacional del Nordeste<br>
+    <a href="https://exa.unne.edu.ar/r/" target="_blank" rel="noopener">exa.unne.edu.ar</a></p>
+  </footer>
+
+</body>
+</html>
